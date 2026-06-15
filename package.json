@@ -1,0 +1,19 @@
+{
+  "name": "softmasters",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/prepare-logos.mjs && astro build",
+    "preview": "astro preview",
+    "prepare-logos": "node scripts/prepare-logos.mjs"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^4.16.18",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.0"
+  }
+}

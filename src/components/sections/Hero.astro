@@ -1,0 +1,96 @@
+---
+import Button from '../Button.astro';
+---
+
+<section class="relative overflow-hidden bg-surface-muted">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(238,43,71,0.08),_transparent_50%)]"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand/5 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div class="section-padding relative">
+    <div class="container-narrow">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-4 py-1.5 text-sm font-medium text-brand">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
+            Studio software & produse digitale
+          </p>
+
+          <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem]">
+            Transformam ideile in produse digitale functionale
+          </h1>
+
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
+            Dezvoltam site-uri moderne, aplicatii web, aplicatii mobile, platforme SaaS si automatizari custom pentru clienti care vor solutii rapide, clare si scalabile.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href="/contact" variant="primary" size="lg">
+              Discuta proiectul tau
+            </Button>
+            <Button href="/#servicii" variant="outline" size="lg">
+              Vezi serviciile
+            </Button>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block" aria-hidden="true">
+          <div class="relative mx-auto max-w-md">
+            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand/20 via-transparent to-brand/5"></div>
+            <div class="relative rounded-2xl border border-surface-border bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-center gap-2">
+                <div class="h-3 w-3 rounded-full bg-brand/80"></div>
+                <div class="h-3 w-3 rounded-full bg-surface-border"></div>
+                <div class="h-3 w-3 rounded-full bg-surface-border"></div>
+              </div>
+
+              <div class="space-y-3">
+                <div class="flex items-center justify-between rounded-lg bg-surface-muted px-4 py-3">
+                  <span class="text-sm font-medium text-ink">Dashboard clienti</span>
+                  <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700">Live</span>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="rounded-lg border border-surface-border p-3 text-center">
+                    <p class="text-2xl font-bold text-brand">24</p>
+                    <p class="text-xs text-ink-subtle">Proiecte</p>
+                  </div>
+                  <div class="rounded-lg border border-surface-border p-3 text-center">
+                    <p class="text-2xl font-bold text-ink">98%</p>
+                    <p class="text-xs text-ink-subtle">Uptime</p>
+                  </div>
+                  <div class="rounded-lg border border-surface-border p-3 text-center">
+                    <p class="text-2xl font-bold text-ink">12</p>
+                    <p class="text-xs text-ink-subtle">API-uri</p>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-surface-border p-4">
+                  <div class="mb-2 flex items-center justify-between">
+                    <span class="text-xs font-medium text-ink-muted">Progres dezvoltare</span>
+                    <span class="text-xs font-medium text-brand">78%</span>
+                  </div>
+                  <div class="h-2 overflow-hidden rounded-full bg-surface-muted">
+                    <div class="h-full w-[78%] rounded-full bg-gradient-to-r from-brand to-brand-light"></div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {
+                    ['Web', 'Mobile', 'SaaS', 'API'].map((tag) => (
+                      <span class="rounded-md bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand">
+                        {tag}
+                      </span>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+
+const services = [
+  {
+    title: 'Site-uri web de prezentare',
+    description: 'Site-uri moderne pentru prezentare, servicii, portofoliu si generare de lead-uri.',
+  },
+  {
+    title: 'Aplicatii web custom',
+    description: 'Platforme web pentru procese de business, clienti, comenzi si operatiuni zilnice.',
+  },
+  {
+    title: 'Aplicatii mobile',
+    description: 'Aplicatii native si cross-platform pentru Android si iOS, orientate spre utilizatori reali.',
+  },
+  {
+    title: 'Produse SaaS',
+    description: 'Platforme cu abonament, dashboard-uri pentru clienti si produse digitale scalabile.',
+  },
+  {
+    title: 'Platforme interne pentru firme',
+    description: 'Tool-uri interne pentru echipe, management si fluxuri operationale personalizate.',
+  },
+  {
+    title: 'CRM-uri si dashboard-uri',
+    description: 'Sisteme de gestionare clienti, vanzari, proiecte si raportare in timp real.',
+  },
+  {
+    title: 'Automatizari complexe',
+    description: 'Eliminam procesele repetitive prin fluxuri automate si integrari intre sisteme.',
+  },
+  {
+    title: 'AI, OCR si procesare documente',
+    description: 'Extragere automata de date, completare documente si fluxuri inteligente — unul dintre tipurile de proiecte pe care le realizam.',
+  },
+  {
+    title: 'Integrari API si sisteme conectate',
+    description: 'Conectam tool-uri, platforme si API-uri intr-un singur flux coerent.',
+  },
+  {
+    title: 'SEO tehnic si optimizare performanta',
+    description: 'Site-uri rapide, optimizate pentru motoarele de cautare si experienta utilizatorului.',
+  },
+];
+---
+
+<section id="servicii" class="section-padding bg-ink text-white">
+  <div class="container-narrow">
+    <SectionHeading
+      label="Servicii"
+      title="Tot ce ai nevoie pentru a digitaliza un business sau o idee"
+      description="De la un site simplu de prezentare la o platforma SaaS complexa — acoperim intreg spectrul de produse digitale."
+      light={true}
+    />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service) => (
+          <article class="card-dark">
+            <div class="mb-3 h-1 w-8 rounded-full bg-brand"></div>
+            <h3 class="text-base font-semibold text-white">{service.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

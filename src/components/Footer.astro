@@ -1,0 +1,75 @@
+---
+import Logo from './Logo.astro';
+
+const services = [
+  { label: 'Site-uri web', href: '/#servicii' },
+  { label: 'Aplicatii web', href: '/#servicii' },
+  { label: 'Aplicatii mobile', href: '/#servicii' },
+  { label: 'SaaS', href: '/#servicii' },
+  { label: 'Automatizari', href: '/#servicii' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/10 bg-ink text-white">
+  <div class="section-padding pb-10 pt-16">
+    <div class="container-narrow">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <Logo variant="light" />
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
+            Construim site-uri, aplicatii web, aplicatii mobile si produse digitale custom pentru firme, startup-uri si clienti individuali.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-widest text-white/40">
+            Servicii
+          </h3>
+          <ul class="space-y-2.5">
+            {
+              services.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-widest text-white/40">
+            Contact
+          </h3>
+          <ul class="space-y-2.5 text-sm text-white/70">
+            <li>
+              <a href="mailto:contact@softmasters.ro" class="transition-colors hover:text-white">
+                contact@softmasters.ro
+              </a>
+            </li>
+            <li>
+              <a href="/contact" class="transition-colors hover:text-white">
+                Formular de contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+        <p class="text-sm text-white/40">
+          &copy; {currentYear} Soft Masters. Toate drepturile rezervate.
+        </p>
+        <p class="text-sm text-white/40">
+          Site-uri web &middot; Aplicatii &middot; SaaS &middot; Automatizari
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

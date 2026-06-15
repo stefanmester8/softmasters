@@ -1,0 +1,74 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+
+const points = [
+  {
+    title: 'Aplicatii mobile pentru clienti',
+    description: 'Aplicatii orientate spre utilizatorii finali — programari, comenzi, conturi si notificari.',
+  },
+  {
+    title: 'Aplicatii mobile interne',
+    description: 'Tool-uri pentru echipe din teren, depozite, service sau operatiuni interne.',
+  },
+  {
+    title: 'Teren, livrari, programari',
+    description: 'Solutii mobile pentru fluxuri operationale: tracking, confirmari, status in timp real.',
+  },
+  {
+    title: 'Mobile-first UX',
+    description: 'Experienta gandita pentru ecran mic — rapida, clara si usor de folosit.',
+  },
+  {
+    title: 'Integrare API',
+    description: 'Aplicatiile mobile se conecteaza la backend-ul tau, la platforme existente sau la servicii cloud.',
+  },
+];
+---
+
+<section class="section-padding bg-surface-muted">
+  <div class="container-narrow">
+    <SectionHeading
+      label="Mobile"
+      title="Aplicatii mobile pentru Android si iOS"
+      description="Construim aplicatii mobile care functioneaza in lumea reala — pentru clienti, echipe sau operatiuni din teren."
+    />
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="space-y-4">
+        {
+          points.map((point) => (
+            <article class="card">
+              <h3 class="font-semibold text-ink">{point.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">{point.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="flex items-center justify-center" aria-hidden="true">
+        <div class="relative w-full max-w-xs">
+          <div class="mx-auto rounded-[2.5rem] border-4 border-ink/10 bg-white p-3 shadow-card">
+            <div class="overflow-hidden rounded-[2rem] bg-surface-muted">
+              <div class="bg-brand px-4 py-6 text-center text-white">
+                <img
+                  src="/images/logo/icon-brand.png"
+                  alt=""
+                  width="48"
+                  height="48"
+                  class="mx-auto mb-3 h-12 w-12 object-contain"
+                />
+                <p class="text-sm font-semibold">Soft Masters App</p>
+                <p class="mt-1 text-xs text-white/70">Exemplu interfata</p>
+              </div>
+              <div class="space-y-2 p-4">
+                <div class="h-10 rounded-lg bg-white border border-surface-border"></div>
+                <div class="h-10 rounded-lg bg-white border border-surface-border"></div>
+                <div class="h-10 rounded-lg bg-brand/10 border border-brand/20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projectTypes = [
+  'Site web de prezentare',
+  'Aplicatie web custom',
+  'Aplicatie mobile',
+  'MVP / SaaS',
+  'Automatizari / Integrari',
+  'Alt tip de proiect',
+];
+
+const budgetRanges = [
+  'Sub 1.000 EUR',
+  '1.000 - 3.000 EUR',
+  '3.000 - 10.000 EUR',
+  'Peste 10.000 EUR',
+  'Nu stiu inca',
+];
+---
+
+<BaseLayout
+  title="Contact | Soft Masters"
+  description="Contacteaza Soft Masters pentru site-uri web, aplicatii, MVP-uri SaaS si automatizari custom. Trimite detaliile proiectului tau."
+>
+  <section class="section-padding bg-surface-muted">
+    <div class="container-narrow">
+      <div class="mx-auto max-w-2xl text-center">
+        <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Discuta proiectul tau
+        </h1>
+        <p class="mt-4 text-lg text-ink-muted">
+          Completeaza formularul de mai jos si revenim cu o evaluare initiala. Fie ca ai o idee de aplicatie sau un proces de automatizat, suntem aici sa te ajutam.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-5">
+        <div class="lg:col-span-3">
+          <form class="card space-y-5" method="POST" action="#" onsubmit="return false;">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="name" class="mb-1.5 block text-sm font-medium text-ink">
+                  Nume <span class="text-brand">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                  placeholder="Numele tau"
+                />
+              </div>
+              <div>
+                <label for="company" class="mb-1.5 block text-sm font-medium text-ink">
+                  Companie <span class="text-ink-subtle">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                  placeholder="Numele companiei"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="email" class="mb-1.5 block text-sm font-medium text-ink">
+                  Email <span class="text-brand">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                  placeholder="email@exemplu.ro"
+                />
+              </div>
+              <div>
+                <label for="phone" class="mb-1.5 block text-sm font-medium text-ink">
+                  Telefon <span class="text-brand">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                  placeholder="+40 7xx xxx xxx"
+                />
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="project-type" class="mb-1.5 block text-sm font-medium text-ink">
+                  Tip proiect <span class="text-brand">*</span>
+                </label>
+                <select
+                  id="project-type"
+                  name="project-type"
+                  required
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                >
+                  <option value="">Selecteaza tipul</option>
+                  {
+                    projectTypes.map((type) => (
+                      <option value={type}>{type}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              <div>
+                <label for="budget" class="mb-1.5 block text-sm font-medium text-ink">
+                  Buget estimativ
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                >
+                  <option value="">Selecteaza bugetul</option>
+                  {
+                    budgetRanges.map((range) => (
+                      <option value={range}>{range}</option>
+                    ))
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message" class="mb-1.5 block text-sm font-medium text-ink">
+                Mesaj <span class="text-brand">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full resize-y rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                placeholder="Descrie pe scurt proiectul, obiectivele si orice detalii relevante..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full rounded-xl bg-brand px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-brand-dark sm:w-auto"
+            >
+              Trimite mesajul
+            </button>
+
+            <p class="text-xs text-ink-subtle">
+              Formularul este doar pentru prezentare. Pentru a trimite mesajul, contacteaza-ne direct prin email sau WhatsApp.
+            </p>
+          </form>
+        </div>
+
+        <div class="space-y-6 lg:col-span-2">
+          <div class="card">
+            <h2 class="text-lg font-semibold text-ink">Contact direct</h2>
+            <p class="mt-2 text-sm text-ink-muted">
+              Preferi sa ne scrii direct? Foloseste una din optiunile de mai jos.
+            </p>
+
+            <div class="mt-6 space-y-4">
+              <a
+                href="mailto:contact@softmasters.ro"
+                class="flex items-center gap-3 rounded-xl border border-surface-border p-4 transition-colors hover:border-brand/30 hover:bg-brand/5"
+              >
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10">
+                  <svg class="h-5 w-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-ink">Email</p>
+                  <p class="text-sm text-brand">contact@softmasters.ro</p>
+                </div>
+              </a>
+
+              <a
+                href="https://wa.me/40000000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 rounded-xl border border-surface-border p-4 transition-colors hover:border-brand/30 hover:bg-brand/5"
+              >
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+                  <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-ink">WhatsApp</p>
+                  <p class="text-sm text-ink-muted">+40 000 000 000</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-surface-border bg-white p-6">
+            <h3 class="font-semibold text-ink">Ce sa incluzi in mesaj</h3>
+            <ul class="mt-3 space-y-2 text-sm text-ink-muted">
+              <li class="flex items-start gap-2">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+                O descriere scurta a proiectului sau ideii
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+                Ce problema vrei sa rezolvi
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+                Termenul dorit, daca ai unul
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+                Orice referinte sau exemple de produse similare
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

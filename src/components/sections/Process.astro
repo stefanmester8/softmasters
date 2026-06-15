@@ -1,0 +1,43 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+
+const steps = [
+  { num: '01', title: 'Discutie si analiza ideii', description: 'Intelegem obiectivul, publicul si constrangerile proiectului.' },
+  { num: '02', title: 'Stabilirea MVP-ului', description: 'Definim ce intra in prima versiune si ce poate astepta.' },
+  { num: '03', title: 'Design si arhitectura', description: 'Structuram interfata, fluxurile si tehnologia potrivita.' },
+  { num: '04', title: 'Dezvoltare rapida', description: 'Construim iterativ, cu feedback constant pe parcurs.' },
+  { num: '05', title: 'Testare', description: 'Verificam functionalitatea, performanta si experienta utilizatorului.' },
+  { num: '06', title: 'Lansare', description: 'Punem produsul live si ne asiguram ca totul functioneaza corect.' },
+  { num: '07', title: 'Iteratii si scalare', description: 'Extindem functionalitatile pe masura ce produsul creste.' },
+];
+---
+
+<section id="proces" class="section-padding bg-white">
+  <div class="container-narrow">
+    <SectionHeading
+      label="Proces"
+      title="Cum lucram"
+      description="Un proces clar, de la prima discutie pana la lansare si dincolo de ea."
+    />
+
+    <div class="relative">
+      <div class="absolute left-6 top-0 hidden h-full w-px bg-surface-border lg:left-1/2 lg:block" aria-hidden="true"></div>
+
+      <div class="space-y-8">
+        {
+          steps.map((step, i) => (
+            <div class:list={['relative flex flex-col gap-4 lg:flex-row lg:items-center', i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse']}>
+              <div class="hidden lg:block lg:w-1/2"></div>
+              <div class="absolute left-6 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-brand bg-white lg:left-1/2 lg:block" aria-hidden="true"></div>
+              <article class:list={['card lg:w-1/2', i % 2 === 0 ? 'lg:mr-auto lg:pr-12' : 'lg:ml-auto lg:pl-12']}>
+                <span class="text-sm font-bold text-brand">{step.num}</span>
+                <h3 class="mt-1 text-lg font-semibold text-ink">{step.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-muted">{step.description}</p>
+              </article>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

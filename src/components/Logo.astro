@@ -1,0 +1,43 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { variant = 'dark', class: className = '' } = Astro.props;
+
+const iconSrc =
+  variant === 'light'
+    ? '/images/logo/icon-light.png'
+    : '/images/logo/icon-dark.png';
+
+const wordmarkSrc =
+  variant === 'light'
+    ? '/images/logo/wordmark-light.png'
+    : '/images/logo/wordmark-dark.png';
+---
+
+<a
+  href="/"
+  class:list={['inline-flex items-center gap-2.5 sm:gap-3 group', className]}
+  aria-label="Soft Masters - Acasa"
+>
+  <img
+    src={iconSrc}
+    alt=""
+    width="36"
+    height="36"
+    class="h-8 w-8 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9"
+    loading="eager"
+    decoding="async"
+  />
+  <img
+    src={wordmarkSrc}
+    alt="Soft Masters"
+    width="160"
+    height="36"
+    class="h-7 w-auto object-contain sm:h-8"
+    loading="eager"
+    decoding="async"
+  />
+</a>
