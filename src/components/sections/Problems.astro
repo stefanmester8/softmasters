@@ -1,28 +1,22 @@
 ---
+import type { Translations } from '../../i18n/types';
 import SectionHeading from '../SectionHeading.astro';
 
-const problems = [
-  'Ai o idee de aplicatie, dar nu stii cum sa o transformi in produs',
-  'Ai procese repetitive care pot fi automatizate',
-  'Folosesti Excel, WhatsApp si foldere dezorganizate pentru lucruri care ar trebui sa fie intr-o aplicatie',
-  'Ai nevoie de un site profesional care sa inspire incredere',
-  'Vrei sa lansezi rapid un MVP',
-  'Ai nevoie de o aplicatie interna pentru clienti, comenzi, documente sau echipe',
-  'Vrei sa conectezi mai multe tool-uri si API-uri intr-un singur flux',
-];
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+const s = t.problems;
 ---
 
 <section class="section-padding bg-surface-muted">
   <div class="container-narrow">
-    <SectionHeading
-      label="Probleme rezolvate"
-      title="Recunosti vreuna din aceste situatii?"
-      description="Lucram cu clienti care au nevoie de claritate, viteza si solutii practice — nu de promisiuni vagi."
-    />
+    <SectionHeading label={s.label} title={s.title} description={s.description} />
 
     <div class="mx-auto max-w-3xl space-y-4">
       {
-        problems.map((problem) => (
+        s.items.map((problem) => (
           <div class="flex items-start gap-4 rounded-xl border border-surface-border bg-white p-5 shadow-sm">
             <div class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand/10">
               <svg class="h-3.5 w-3.5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">

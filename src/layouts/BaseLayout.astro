@@ -1,25 +1,34 @@
 ---
 import '../styles/global.css';
+import type { Locale } from '../i18n/types';
+import type { Translations } from '../i18n/types';
+import { getAlternateLocalePath } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
+  locale: Locale;
+  t: Translations;
   title?: string;
   description?: string;
   ogImage?: string;
 }
 
 const {
-  title = 'Soft Masters | Site-uri web, aplicatii web, mobile si produse SaaS',
-  description = 'Soft Masters construieste site-uri web, aplicatii web, aplicatii mobile, produse SaaS si automatizari custom pentru firme, startup-uri si clienti individuali.',
+  locale,
+  t,
+  title = t.meta.title,
+  description = t.meta.description,
   ogImage = '/images/logo/icon-brand.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateRo = new URL(getAlternateLocalePath(Astro.url.pathname, 'ro'), Astro.site);
+const alternateEn = new URL(getAlternateLocalePath(Astro.url.pathname, 'en'), Astro.site);
 ---
 
 <!doctype html>
-<html lang="ro">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +36,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="ro" href={alternateRo} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateRo} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -36,7 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
-    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
     <meta property="og:site_name" content="Soft Masters" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -52,10 +64,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
   </head>
   <body>
-    <Header />
+    <Header locale={locale} t={t} />
     <main class="pt-16">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} t={t} />
   </body>
 </html>

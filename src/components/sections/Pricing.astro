@@ -1,46 +1,26 @@
 ---
+import type { Locale } from '../../i18n/types';
+import type { Translations } from '../../i18n/types';
+import { localizedPath } from '../../i18n/utils';
 import SectionHeading from '../SectionHeading.astro';
 import Button from '../Button.astro';
 
-const packages = [
-  {
-    title: 'Website profesional',
-    description: 'Pentru prezentare, servicii, portofoliu, lead generation',
-    price: 'de la 500 EUR',
-    featured: false,
-  },
-  {
-    title: 'Aplicatie web custom',
-    description: 'Pentru procese, clienti, dashboard-uri, CRM, platforme interne',
-    price: 'de la 2.000 EUR',
-    featured: true,
-  },
-  {
-    title: 'MVP / SaaS product',
-    description: 'Pentru produse digitale, abonamente, marketplace-uri, platforme scalabile',
-    price: 'pret personalizat',
-    featured: false,
-  },
-  {
-    title: 'Automatizari si integrari',
-    description: 'Pentru documente, API-uri, OCR, fluxuri repetitive',
-    price: 'de la 1.000 EUR',
-    featured: false,
-  },
-];
+interface Props {
+  t: Translations;
+  locale: Locale;
+}
+
+const { t, locale } = Astro.props;
+const s = t.pricing;
 ---
 
 <section id="preturi" class="section-padding bg-surface-muted">
   <div class="container-narrow">
-    <SectionHeading
-      label="Pachete"
-      title="Transparenta de la inceput"
-      description="Pachete orientative pentru a intelege nivelul de investitie. Fiecare proiect primeste o oferta personalizata."
-    />
+    <SectionHeading label={s.label} title={s.title} description={s.description} />
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {
-        packages.map((pkg) => (
+        s.packages.map((pkg) => (
           <article
             class:list={[
               'flex flex-col rounded-2xl border p-6 transition-shadow duration-300',
@@ -51,15 +31,19 @@ const packages = [
           >
             {pkg.featured && (
               <span class="mb-3 inline-block w-fit rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
-                Popular
+                {s.popular}
               </span>
             )}
             <h3 class="text-lg font-semibold text-ink">{pkg.title}</h3>
             <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">{pkg.description}</p>
             <p class="mt-6 text-2xl font-bold text-ink">{pkg.price}</p>
             <div class="mt-4">
-              <Button href="/contact" variant={pkg.featured ? 'primary' : 'outline'} class="w-full text-center">
-                Solicita oferta
+              <Button
+                href={localizedPath('/contact', locale)}
+                variant={pkg.featured ? 'primary' : 'outline'}
+                class="w-full text-center"
+              >
+                {s.requestQuote}
               </Button>
             </div>
           </article>
@@ -67,8 +51,6 @@ const packages = [
       }
     </div>
 
-    <p class="mt-8 text-center text-sm text-ink-subtle">
-      Preturile sunt orientative si depind de complexitate, integrare si termen.
-    </p>
+    <p class="mt-8 text-center text-sm text-ink-subtle">{s.note}</p>
   </div>
 </section>

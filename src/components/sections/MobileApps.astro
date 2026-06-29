@@ -1,42 +1,23 @@
 ---
+import type { Translations } from '../../i18n/types';
 import SectionHeading from '../SectionHeading.astro';
 
-const points = [
-  {
-    title: 'Aplicatii mobile pentru clienti',
-    description: 'Aplicatii orientate spre utilizatorii finali — programari, comenzi, conturi si notificari.',
-  },
-  {
-    title: 'Aplicatii mobile interne',
-    description: 'Tool-uri pentru echipe din teren, depozite, service sau operatiuni interne.',
-  },
-  {
-    title: 'Teren, livrari, programari',
-    description: 'Solutii mobile pentru fluxuri operationale: tracking, confirmari, status in timp real.',
-  },
-  {
-    title: 'Mobile-first UX',
-    description: 'Experienta gandita pentru ecran mic — rapida, clara si usor de folosit.',
-  },
-  {
-    title: 'Integrare API',
-    description: 'Aplicatiile mobile se conecteaza la backend-ul tau, la platforme existente sau la servicii cloud.',
-  },
-];
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+const s = t.mobile;
 ---
 
 <section class="section-padding bg-surface-muted">
   <div class="container-narrow">
-    <SectionHeading
-      label="Mobile"
-      title="Aplicatii mobile pentru Android si iOS"
-      description="Construim aplicatii mobile care functioneaza in lumea reala — pentru clienti, echipe sau operatiuni din teren."
-    />
+    <SectionHeading label={s.label} title={s.title} description={s.description} />
 
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="space-y-4">
         {
-          points.map((point) => (
+          s.points.map((point) => (
             <article class="card">
               <h3 class="font-semibold text-ink">{point.title}</h3>
               <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">{point.description}</p>
@@ -57,13 +38,13 @@ const points = [
                   height="48"
                   class="mx-auto mb-3 h-12 w-12 object-contain"
                 />
-                <p class="text-sm font-semibold">Soft Masters App</p>
-                <p class="mt-1 text-xs text-white/70">Exemplu interfata</p>
+                <p class="text-sm font-semibold">{s.appTitle}</p>
+                <p class="mt-1 text-xs text-white/70">{s.appSubtitle}</p>
               </div>
               <div class="space-y-2 p-4">
-                <div class="h-10 rounded-lg bg-white border border-surface-border"></div>
-                <div class="h-10 rounded-lg bg-white border border-surface-border"></div>
-                <div class="h-10 rounded-lg bg-brand/10 border border-brand/20"></div>
+                <div class="h-10 rounded-lg border border-surface-border bg-white"></div>
+                <div class="h-10 rounded-lg border border-surface-border bg-white"></div>
+                <div class="h-10 rounded-lg border border-brand/20 bg-brand/10"></div>
               </div>
             </div>
           </div>

@@ -1,10 +1,20 @@
 ---
+import type { Locale } from '../i18n/types';
+import { localizedPath } from '../i18n/utils';
+
 interface Props {
   variant?: 'light' | 'dark';
+  locale?: Locale;
+  homeLabel?: string;
   class?: string;
 }
 
-const { variant = 'dark', class: className = '' } = Astro.props;
+const {
+  variant = 'dark',
+  locale = 'ro',
+  homeLabel = 'Soft Masters - Home',
+  class: className = '',
+} = Astro.props;
 
 const iconSrc =
   variant === 'light'
@@ -15,12 +25,14 @@ const wordmarkSrc =
   variant === 'light'
     ? '/images/logo/wordmark-light.png'
     : '/images/logo/wordmark-dark.png';
+
+const homeHref = localizedPath('/', locale);
 ---
 
 <a
-  href="/"
+  href={homeHref}
   class:list={['inline-flex items-center gap-2.5 sm:gap-3 group', className]}
-  aria-label="Soft Masters - Acasa"
+  aria-label={homeLabel}
 >
   <img
     src={iconSrc}

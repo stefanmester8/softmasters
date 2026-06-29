@@ -1,18 +1,30 @@
 ---
+import type { Locale } from '../../i18n/types';
+import type { Translations } from '../../i18n/types';
+import { localizedPath } from '../../i18n/utils';
 import Button from '../Button.astro';
+
+interface Props {
+  t: Translations;
+  locale: Locale;
+}
+
+const { t, locale } = Astro.props;
+const s = t.contactCta;
 ---
 
 <section class="section-padding bg-gradient-to-br from-brand to-brand-dark text-white">
   <div class="container-narrow text-center">
-    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-      Ai o idee sau un proces care poate fi digitalizat?
-    </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-      Spune-ne despre proiectul tau — fie ca e un site, o aplicatie, un MVP sau o automatizare. Raspundem rapid cu o evaluare initiala.
-    </p>
+    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">{s.title}</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-white/80">{s.description}</p>
     <div class="mt-8">
-      <Button href="/contact" variant="secondary" size="lg" class="!bg-white !text-brand hover:!bg-white/90">
-        Trimite detaliile proiectului
+      <Button
+        href={localizedPath('/contact', locale)}
+        variant="secondary"
+        size="lg"
+        class="!bg-white !text-brand hover:!bg-white/90"
+      >
+        {s.button}
       </Button>
     </div>
   </div>

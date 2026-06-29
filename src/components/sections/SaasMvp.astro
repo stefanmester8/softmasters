@@ -1,46 +1,22 @@
 ---
+import type { Translations } from '../../i18n/types';
 import SectionHeading from '../SectionHeading.astro';
 
-const items = [
-  {
-    title: 'MVP-uri rapide',
-    description: 'Lansam o prima versiune functionala in timp record, pentru validare rapida pe piata.',
-  },
-  {
-    title: 'Produse SaaS',
-    description: 'Platforme cu abonament, gestionare utilizatori si functionalitati scalabile.',
-  },
-  {
-    title: 'Platforme cu abonament',
-    description: 'Modele de business recurente, cu plati integrate si management clienti.',
-  },
-  {
-    title: 'Dashboard-uri pentru clienti',
-    description: 'Interfete dedicate unde clientii tai isi gestioneaza contul, datele si serviciile.',
-  },
-  {
-    title: 'Aplicatii cu autentificare',
-    description: 'Sisteme securizate cu roluri, permisiuni si acces personalizat.',
-  },
-  {
-    title: 'Sisteme scalabile',
-    description: 'Arhitectura pregatita pentru crestere — poti incepe mic si extinde pe masura ce cresti.',
-  },
-];
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+const s = t.saasMvp;
 ---
 
 <section class="section-padding bg-ink text-white">
   <div class="container-narrow">
-    <SectionHeading
-      label="SaaS & MVP"
-      title="De la idee la MVP"
-      description="Ajutam fondatori, antreprenori si firme sa transforme o idee intr-un produs digital functional, gata de testat pe piata."
-      light={true}
-    />
+    <SectionHeading label={s.label} title={s.title} description={s.description} light={true} />
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        items.map((item) => (
+        s.items.map((item) => (
           <article class="card-dark">
             <h3 class="text-base font-semibold text-white">{item.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-white/60">{item.description}</p>

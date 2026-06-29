@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeSections from '../../components/HomeSections.astro';
+import { getTranslations } from '../../i18n/utils';
+
+const locale = 'en';
+const t = getTranslations(locale);
+---
+
+<BaseLayout locale={locale} t={t}>
+  <HomeSections t={t} locale={locale} />
+</BaseLayout>

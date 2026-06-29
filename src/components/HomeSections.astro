@@ -1,0 +1,36 @@
+---
+import type { Locale } from '../i18n/types';
+import type { Translations } from '../i18n/types';
+import Hero from './sections/Hero.astro';
+import WhatWeBuild from './sections/WhatWeBuild.astro';
+import Services from './sections/Services.astro';
+import Problems from './sections/Problems.astro';
+import FeaturedSolution from './sections/FeaturedSolution.astro';
+import SaasMvp from './sections/SaasMvp.astro';
+import MobileApps from './sections/MobileApps.astro';
+import Process from './sections/Process.astro';
+import Technologies from './sections/Technologies.astro';
+import Pricing from './sections/Pricing.astro';
+import Faq from './sections/Faq.astro';
+import ContactCta from './sections/ContactCta.astro';
+
+interface Props {
+  t: Translations;
+  locale: Locale;
+}
+
+const { t, locale } = Astro.props;
+---
+
+<Hero t={t} locale={locale} />
+<WhatWeBuild t={t} />
+<Services t={t} />
+<Problems t={t} />
+<FeaturedSolution t={t} />
+<SaasMvp t={t} />
+<MobileApps t={t} />
+<Process t={t} />
+<Technologies t={t} />
+<Pricing t={t} locale={locale} />
+<Faq t={t} />
+<ContactCta t={t} locale={locale} />

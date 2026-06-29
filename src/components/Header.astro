@@ -1,22 +1,31 @@
 ---
+import type { Locale } from '../i18n/types';
+import type { Translations } from '../i18n/types';
+import { localizedPath } from '../i18n/utils';
 import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  t: Translations;
+}
+
+const { locale, t } = Astro.props;
 
 const navItems = [
-  { label: 'Servicii', href: '/#servicii' },
-  { label: 'Proiecte', href: '/#proiecte' },
-  { label: 'Proces', href: '/#proces' },
-  { label: 'Tehnologii', href: '/#tehnologii' },
-  { label: 'Contact', href: '/contact' },
+  { label: t.nav.services, href: localizedPath('/#servicii', locale) },
+  { label: t.nav.projects, href: localizedPath('/#proiecte', locale) },
+  { label: t.nav.process, href: localizedPath('/#proces', locale) },
+  { label: t.nav.technologies, href: localizedPath('/#tehnologii', locale) },
+  { label: t.nav.contact, href: localizedPath('/contact', locale) },
 ];
 ---
 
-<header
-  class="fixed inset-x-0 top-0 z-50 border-b border-surface-border/60 bg-white/80 backdrop-blur-lg"
->
-  <div class="container-narrow flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-    <Logo />
+<header class="fixed inset-x-0 top-0 z-50 border-b border-surface-border bg-white">
+  <div class="container-narrow flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <Logo locale={locale} homeLabel={t.header.homeAria} />
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Navigare principala">
+    <nav class="hidden items-center gap-8 md:flex" aria-label={t.header.mainNav}>
       {
         navItems.map((item) => (
           <a
@@ -29,36 +38,40 @@ const navItems = [
       }
     </nav>
 
-    <div class="hidden md:block">
+    <div class="hidden items-center gap-3 md:flex">
+      <LanguageSwitcher locale={locale} />
       <a
-        href="/contact"
+        href={localizedPath('/contact', locale)}
         class="inline-flex items-center justify-center rounded-xl bg-brand px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-brand-dark"
       >
-        Discuta proiectul tau
+        {t.nav.cta}
       </a>
     </div>
 
-    <button
-      type="button"
-      id="mobile-menu-btn"
-      class="inline-flex items-center justify-center rounded-lg p-2 text-ink md:hidden"
-      aria-label="Deschide meniul"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-    </button>
+    <div class="flex items-center gap-2 md:hidden">
+      <LanguageSwitcher locale={locale} />
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="inline-flex items-center justify-center rounded-lg p-2 text-ink"
+        aria-label={t.header.openMenu}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <div
     id="mobile-menu"
     class="hidden border-t border-surface-border bg-white md:hidden"
     role="dialog"
-    aria-label="Meniul mobil"
+    aria-label={t.header.mobileNav}
   >
-    <nav class="container-narrow flex flex-col gap-1 px-4 py-4" aria-label="Navigare mobila">
+    <nav class="container-narrow flex flex-col gap-1 px-4 py-4" aria-label={t.header.mobileNav}>
       {
         navItems.map((item) => (
           <a
@@ -70,10 +83,10 @@ const navItems = [
         ))
       }
       <a
-        href="/contact"
+        href={localizedPath('/contact', locale)}
         class="mt-2 rounded-xl bg-brand px-4 py-3 text-center text-sm font-medium text-white"
       >
-        Discuta proiectul tau
+        {t.nav.cta}
       </a>
     </nav>
   </div>

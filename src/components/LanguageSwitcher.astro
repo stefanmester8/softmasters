@@ -1,0 +1,41 @@
+---
+import type { Locale } from '../i18n/types';
+import type { Translations } from '../i18n/types';
+import { getAlternateLocalePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const roPath = getAlternateLocalePath(pathname, 'ro');
+const enPath = getAlternateLocalePath(pathname, 'en');
+---
+
+<div
+  class="flex items-center rounded-lg border border-surface-border bg-white p-0.5 text-xs font-semibold"
+  role="group"
+  aria-label="Language"
+>
+  <a
+    href={roPath}
+    class:list={[
+      'rounded-md px-2.5 py-1.5 transition-colors',
+      locale === 'ro' ? 'bg-brand text-white' : 'text-ink-muted hover:text-ink',
+    ]}
+    aria-current={locale === 'ro' ? 'page' : undefined}
+  >
+    RO
+  </a>
+  <a
+    href={enPath}
+    class:list={[
+      'rounded-md px-2.5 py-1.5 transition-colors',
+      locale === 'en' ? 'bg-brand text-white' : 'text-ink-muted hover:text-ink',
+    ]}
+    aria-current={locale === 'en' ? 'page' : undefined}
+  >
+    EN
+  </a>
+</div>

@@ -1,5 +1,16 @@
 ---
+import type { Locale } from '../../i18n/types';
+import type { Translations } from '../../i18n/types';
+import { localizedPath } from '../../i18n/utils';
 import Button from '../Button.astro';
+
+interface Props {
+  t: Translations;
+  locale: Locale;
+}
+
+const { t, locale } = Astro.props;
+const h = t.hero;
 ---
 
 <section class="relative overflow-hidden bg-surface-muted">
@@ -18,23 +29,23 @@ import Button from '../Button.astro';
         <div>
           <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-4 py-1.5 text-sm font-medium text-brand">
             <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
-            Studio software & produse digitale
+            {h.badge}
           </p>
 
           <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem]">
-            Transformam ideile in produse digitale functionale
+            {h.headline}
           </h1>
 
           <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
-            Dezvoltam site-uri moderne, aplicatii web, aplicatii mobile, platforme SaaS si automatizari custom pentru clienti care vor solutii rapide, clare si scalabile.
+            {h.subheadline}
           </p>
 
           <div class="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary" size="lg">
-              Discuta proiectul tau
+            <Button href={localizedPath('/contact', locale)} variant="primary" size="lg">
+              {h.ctaPrimary}
             </Button>
-            <Button href="/#servicii" variant="outline" size="lg">
-              Vezi serviciile
+            <Button href={localizedPath('/#servicii', locale)} variant="outline" size="lg">
+              {h.ctaSecondary}
             </Button>
           </div>
         </div>
@@ -51,26 +62,26 @@ import Button from '../Button.astro';
 
               <div class="space-y-3">
                 <div class="flex items-center justify-between rounded-lg bg-surface-muted px-4 py-3">
-                  <span class="text-sm font-medium text-ink">Dashboard clienti</span>
-                  <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700">Live</span>
+                  <span class="text-sm font-medium text-ink">{h.mockDashboard}</span>
+                  <span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700">{h.mockLive}</span>
                 </div>
                 <div class="grid grid-cols-3 gap-3">
                   <div class="rounded-lg border border-surface-border p-3 text-center">
                     <p class="text-2xl font-bold text-brand">24</p>
-                    <p class="text-xs text-ink-subtle">Proiecte</p>
+                    <p class="text-xs text-ink-subtle">{h.mockProjects}</p>
                   </div>
                   <div class="rounded-lg border border-surface-border p-3 text-center">
                     <p class="text-2xl font-bold text-ink">98%</p>
-                    <p class="text-xs text-ink-subtle">Uptime</p>
+                    <p class="text-xs text-ink-subtle">{h.mockUptime}</p>
                   </div>
                   <div class="rounded-lg border border-surface-border p-3 text-center">
                     <p class="text-2xl font-bold text-ink">12</p>
-                    <p class="text-xs text-ink-subtle">API-uri</p>
+                    <p class="text-xs text-ink-subtle">{h.mockApis}</p>
                   </div>
                 </div>
                 <div class="rounded-lg border border-surface-border p-4">
                   <div class="mb-2 flex items-center justify-between">
-                    <span class="text-xs font-medium text-ink-muted">Progres dezvoltare</span>
+                    <span class="text-xs font-medium text-ink-muted">{h.mockProgress}</span>
                     <span class="text-xs font-medium text-brand">78%</span>
                   </div>
                   <div class="h-2 overflow-hidden rounded-full bg-surface-muted">
@@ -79,7 +90,7 @@ import Button from '../Button.astro';
                 </div>
                 <div class="flex flex-wrap gap-2">
                   {
-                    ['Web', 'Mobile', 'SaaS', 'API'].map((tag) => (
+                    h.tags.map((tag) => (
                       <span class="rounded-md bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand">
                         {tag}
                       </span>

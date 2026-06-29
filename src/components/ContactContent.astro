@@ -1,0 +1,299 @@
+---
+import type { Locale } from '../i18n/types';
+import type { Translations } from '../i18n/types';
+
+interface Props {
+  t: Translations;
+  locale: Locale;
+}
+
+const { t } = Astro.props;
+const c = t.contact;
+const contactEmail = 'contact@softmasters.ro';
+---
+
+<section class="section-padding bg-surface-muted">
+  <div class="container-narrow">
+    <div class="mx-auto max-w-2xl text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{c.title}</h1>
+      <p class="mt-4 text-lg text-ink-muted">{c.subtitle}</p>
+    </div>
+
+    <div class="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <form id="contact-form" class="card space-y-5" novalidate>
+          <div
+            id="form-success"
+            class="hidden rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+            role="status"
+          >
+            {c.success}
+          </div>
+
+          <div
+            id="form-error"
+            class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+            role="alert"
+          ></div>
+
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.name} <span class="text-brand">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                placeholder={c.form.namePlaceholder}
+              />
+            </div>
+            <div>
+              <label for="company" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.company} <span class="text-ink-subtle">{c.form.optional}</span>
+              </label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                placeholder={c.form.companyPlaceholder}
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="email" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.email} <span class="text-brand">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                placeholder={c.form.emailPlaceholder}
+              />
+            </div>
+            <div>
+              <label for="phone" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.phone} <span class="text-brand">*</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                placeholder={c.form.phonePlaceholder}
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="project-type" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.projectType} <span class="text-brand">*</span>
+              </label>
+              <select
+                id="project-type"
+                name="project_type"
+                required
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              >
+                <option value="">{c.form.selectType}</option>
+                {
+                  c.projectTypes.map((type) => (
+                    <option value={type}>{type}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div>
+              <label for="budget" class="mb-1.5 block text-sm font-medium text-ink">
+                {c.form.budget}
+              </label>
+              <select
+                id="budget"
+                name="budget"
+                class="w-full rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              >
+                <option value="">{c.form.selectBudget}</option>
+                {
+                  c.budgetRanges.map((range) => (
+                    <option value={range}>{range}</option>
+                  ))
+                }
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="mb-1.5 block text-sm font-medium text-ink">
+              {c.form.message} <span class="text-brand">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              class="w-full resize-y rounded-xl border border-surface-border bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              placeholder={c.form.messagePlaceholder}
+            ></textarea>
+          </div>
+
+          <button
+            id="submit-btn"
+            type="submit"
+            class="w-full rounded-xl bg-brand px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {c.submit}
+          </button>
+
+          <p class="text-xs text-ink-subtle">{c.footerNote}</p>
+        </form>
+      </div>
+
+      <div class="space-y-6 lg:col-span-2">
+        <div class="card">
+          <h2 class="text-lg font-semibold text-ink">{c.directTitle}</h2>
+          <p class="mt-2 text-sm text-ink-muted">{c.directSubtitle}</p>
+
+          <div class="mt-6 space-y-4">
+            <a
+              href={`mailto:${contactEmail}`}
+              class="flex items-center gap-3 rounded-xl border border-surface-border p-4 transition-colors hover:border-brand/30 hover:bg-brand/5"
+            >
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10">
+                <svg class="h-5 w-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ink">{c.email}</p>
+                <p class="text-sm text-brand">{contactEmail}</p>
+              </div>
+            </a>
+
+            <a
+              href="https://wa.me/40730198339"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 rounded-xl border border-surface-border p-4 transition-colors hover:border-brand/30 hover:bg-brand/5"
+            >
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+                <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ink">{c.whatsapp}</p>
+                <p class="text-sm text-ink-muted">+40 730 198 339</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-surface-border bg-white p-6">
+          <h3 class="font-semibold text-ink">{c.tipsTitle}</h3>
+          <ul class="mt-3 space-y-2 text-sm text-ink-muted">
+            {
+              c.tips.map((tip) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"></span>
+                  {tip}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ contactEmail, contactCopy: c }}>
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const honey = form.querySelector('[name="_honey"]');
+    if (honey instanceof HTMLInputElement && honey.value) return;
+
+    successEl?.classList.add('hidden');
+    errorEl?.classList.add('hidden');
+
+    const formData = new FormData(form);
+    const name = String(formData.get('name') ?? '').trim();
+    const email = String(formData.get('email') ?? '').trim();
+
+    const payload = {
+      name,
+      email,
+      phone: String(formData.get('phone') ?? '').trim(),
+      company: String(formData.get('company') ?? '').trim(),
+      project_type: String(formData.get('project_type') ?? '').trim(),
+      budget: String(formData.get('budget') ?? '').trim(),
+      message: String(formData.get('message') ?? '').trim(),
+      _subject: `${contactCopy.emailSubject} - ${name}`,
+      _template: 'table',
+      _captcha: 'false',
+    };
+
+    if (!payload.name || !payload.email || !payload.phone || !payload.project_type || !payload.message) {
+      if (errorEl) {
+        errorEl.textContent = contactCopy.requiredFields;
+        errorEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (submitBtn instanceof HTMLButtonElement) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = contactCopy.sending;
+    }
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || (result.success !== 'true' && result.success !== true)) {
+        throw new Error(result.message || contactCopy.genericError);
+      }
+
+      form.reset();
+      successEl?.classList.remove('hidden');
+      successEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (error) {
+      if (errorEl) {
+        errorEl.textContent =
+          error instanceof Error ? error.message : contactCopy.genericError;
+        errorEl.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn instanceof HTMLButtonElement) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = contactCopy.submit;
+      }
+    }
+  });
+</script>

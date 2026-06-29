@@ -1,51 +1,22 @@
 ---
+import type { Translations } from '../../i18n/types';
 import SectionHeading from '../SectionHeading.astro';
 
-const audiences = [
-  {
-    title: 'Firme si companii',
-    description: 'Site-uri profesionale, platforme interne si sisteme care sustin operatiunile zilnice.',
-    icon: 'building',
-  },
-  {
-    title: 'Startup-uri',
-    description: 'MVP-uri rapide, produse SaaS si platforme gata de scalare dupa validare.',
-    icon: 'rocket',
-  },
-  {
-    title: 'Antreprenori',
-    description: 'Transformam idei de business in aplicatii functionale, de la concept la lansare.',
-    icon: 'lightbulb',
-  },
-  {
-    title: 'Persoane cu idei de produs',
-    description: 'Lucram si cu clienti individuali care vor sa transforme o idee intr-un produs digital real.',
-    icon: 'user',
-  },
-  {
-    title: 'Afaceri locale',
-    description: 'Prezenta online, programari, comenzi si tool-uri digitale pentru business-uri locale.',
-    icon: 'store',
-  },
-  {
-    title: 'Echipe cu nevoi interne',
-    description: 'CRM-uri, dashboard-uri si aplicatii interne pentru fluxuri care nu mai pot ramane in Excel.',
-    icon: 'team',
-  },
-];
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+const s = t.whatWeBuild;
 ---
 
 <section id="ce-construim" class="section-padding bg-white">
   <div class="container-narrow">
-    <SectionHeading
-      label="Ce construim"
-      title="Produse digitale pentru orice tip de client"
-      description="Fie ca esti o firma stabilita, un startup la inceput de drum sau o persoana cu o idee de aplicatie, construim solutii digitale adaptate nevoilor tale."
-    />
+    <SectionHeading label={s.label} title={s.title} description={s.description} />
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        audiences.map((item) => (
+        s.audiences.map((item) => (
           <article class="card group">
             <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
               {item.icon === 'building' && (
