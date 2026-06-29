@@ -5,6 +5,7 @@ import type { Translations } from '../i18n/types';
 import { getAlternateLocalePath } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SeoSchema from '../components/SeoSchema.astro';
 
 interface Props {
   locale: Locale;
@@ -25,6 +26,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const alternateRo = new URL(getAlternateLocalePath(Astro.url.pathname, 'ro'), Astro.site);
 const alternateEn = new URL(getAlternateLocalePath(Astro.url.pathname, 'en'), Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
@@ -33,12 +35,18 @@ const alternateEn = new URL(getAlternateLocalePath(Astro.url.pathname, 'en'), As
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#ee2b47" />
+    <meta name="author" content="Soft Masters" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="ro" href={alternateRo} />
     <link rel="alternate" hreflang="en" href={alternateEn} />
     <link rel="alternate" hreflang="x-default" href={alternateRo} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -47,14 +55,18 @@ const alternateEn = new URL(getAlternateLocalePath(Astro.url.pathname, 'en'), As
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="Soft Masters" />
     <meta property="og:locale" content={t.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={locale === 'ro' ? 'en_US' : 'ro_RO'} />
     <meta property="og:site_name" content="Soft Masters" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <SeoSchema locale={locale} title={title} description={description} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -1,0 +1,82 @@
+---
+import type { Locale } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+}
+
+const { locale, title, description } = Astro.props;
+
+const siteUrl = 'https://softmasters.ro';
+const logoUrl = `${siteUrl}/images/logo/icon-brand.png`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: 'Soft Masters',
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: logoUrl,
+      },
+      email: 'contact@softmasters.ro',
+      telephone: '+40730198339',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+40730198339',
+        contactType: 'customer service',
+        email: 'contact@softmasters.ro',
+        availableLanguage: ['Romanian', 'English'],
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      name: 'Soft Masters',
+      url: siteUrl,
+      description,
+      inLanguage: ['ro-RO', 'en-US'],
+      publisher: { '@id': `${siteUrl}/#organization` },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${siteUrl}/#service`,
+      name: 'Soft Masters',
+      url: siteUrl,
+      image: logoUrl,
+      description,
+      email: 'contact@softmasters.ro',
+      telephone: '+40730198339',
+      areaServed: {
+        '@type': 'Country',
+        name: 'Romania',
+      },
+      serviceType: [
+        'Web development',
+        'Mobile app development',
+        'SaaS development',
+        'Business automation',
+        'API integrations',
+      ],
+      knowsLanguage: ['ro', 'en'],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${Astro.url.href}#webpage`,
+      url: Astro.url.href,
+      name: title,
+      description,
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      about: { '@id': `${siteUrl}/#service` },
+      inLanguage: locale === 'ro' ? 'ro-RO' : 'en-US',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
